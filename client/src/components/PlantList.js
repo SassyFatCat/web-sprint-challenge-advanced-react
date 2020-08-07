@@ -6,18 +6,40 @@ export default class PlantList extends Component {
   constructor() {
     super();
     this.state = {
-      plants: []
+      plants: [],
+      searchTerm: '',
+      plantsPerm: []
     }
   }
 
+  onFilterChange = event => {
+  if (event.target.value !== '') {
+    this.setState({
+      searchTerm: event.target.value
+    });
+    this.setState({
+      plants: this.state.plantsPerm.filter(item => {
+      return item.description.includes(event.target.value)
+    })
+  })
+  }
+  else {
+    this.setState({
+      plants: this.state.plantsPerm
+    })
+  }
+}
+
   componentDidMount() {
     axios.get('http://localhost:3333/plants')
-      .then(success => this.setState({
-        plants: success.data.plantsData}))
-      .catch(fail => {
-        console.log(fail);
-        debugger
-      })
+    .then(success => this.setState({
+      plants: success.data.plantsData,
+      plantsPerm: success.data.plantsData
+    }))
+    .catch(fail => {
+      console.log(fail);
+      debugger
+    })
   }
   // when the component mounts:
   //   - fetch data from the server endpoint - http://localhost:3333/plants
@@ -27,6 +49,11 @@ export default class PlantList extends Component {
   render() {
     return (
       <main className="plant-list">
+        <input
+          type="text"
+          placeholder="Filter by keyword"
+          onChange={this.onFilterChange}
+        ></input>
         {this.state?.plants?.map((plant) => (
           <div className="plant-card" key={plant.id}>
             <img className="plant-image" src={plant.img} alt={plant.name} />
