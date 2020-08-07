@@ -29,14 +29,41 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain how to build stateful class components.
+  {`1) extend React.Component to a named class`}
+
+  {`2) declare a constructor method, calling super() inside of it and instantiating this.state on the object`}
+
+  {`3) At a minimum, have a render() method that will return the JSX`}
 
 2. Describe the different phases of the component lifecycle.
+{`Mounting => initial data is defined on the constructor, render() and componentDidMount() are invoked`}
+
+{`Updating => changes to state using setState, shouldComponentUpdate and componentDidUpdate will run, and any changes will cause render() to rerun`}
+
+{`Unmounting => the component is removed from the DOM, componentWillUnmount can be called for cleaning up (event listeners)`}
 
 3. Demonstrate an understanding of class component lifecycle methods.
+  {`componentDidMount() will run whenever the component first mounts`}
+
+  {`componentDidUpdate() will run whenever state has changed and takes prevProps and prevState as arguments to be able to utilize as comparison with current props and state`}
+
+  {`shouldComponentUpdate() looks ahead and the component will update or not based on what is returned from the method, either true or false. nextProps and nextState are used as arguments to utilize in the logic`}
+
+  {`componentWillUnmount() will perform cleanup when the component unmounts like removing event listeners that may otherwise persist `}
 
 4. Define stateful logic.
 
+{`It is logic that is built into a component, often associated with state in the component`}
+
 5. Describe how to test a React component with React Testing Library.
+
+{`Make a new file, ex:  exampleFile.test.js   usually the title will correspond with the file being tested`}
+
+{`In the test file, import React, the file being tested and all neccessary functions from @testing-library/react`}
+
+{`Write tests using the function test(() => {}) `}
+
+{`Run the tests using the terminal and the appropriate script`}
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
