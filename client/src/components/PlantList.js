@@ -17,9 +17,10 @@ export default class PlantList extends Component {
     this.setState({
       searchTerm: event.target.value
     });
+    const term = new RegExp(`${this.state.searchTerm}`, 'i')
     this.setState({
       plants: this.state.plantsPerm.filter(item => {
-      return item.description.includes(event.target.value)
+      return term.test(item.description)
     })
   })
   }
